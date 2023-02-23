@@ -6,7 +6,7 @@ function Row({ numberOfCells, colorRow, letterRow }) {
     let row = [];
 
     for (let i = 0; i < numberOfCells; i++) {
-        row.push(<Cell
+        row.push(<Cell key={i}
             color={colorRow[i]}
             letter={letterRow[i]} />)
     }

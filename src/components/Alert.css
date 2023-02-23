@@ -1,0 +1,16 @@
+.alert {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    background-color: "#ffb3b3";
+    color: #000;
+    padding: 16px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.alert p {
+    margin: 0 0 8px;
+}

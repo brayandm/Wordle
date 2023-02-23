@@ -6,7 +6,7 @@ function Grid({ numberOfRows, numberOfCells, colorGrid, letterGrid }) {
     let grid = [];
 
     for (let i = 0; i < numberOfRows; i++) {
-        grid.push(<Row numberOfCells={numberOfCells} colorRow={colorGrid[i]} letterRow={letterGrid[i]} />)
+        grid.push(<Row key={i} numberOfCells={numberOfCells} colorRow={colorGrid[i]} letterRow={letterGrid[i]} />)
     }
 
     return (

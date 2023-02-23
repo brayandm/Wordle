@@ -3,13 +3,16 @@ import Keyboard from './Keyboard';
 import { useEffect, useState } from 'react';
 import useKeypress from './useKeypress';
 import words from './words'
+import Alert from './Alert'
 
 function Game({ numberOfRows, numberOfCells }) {
 
-    const [word, setword] = useState(words[Math.floor(Math.random() * words.length)].toUpperCase().split(''))
+    // const [word, setword] = useState(words[Math.floor(Math.random() * words.length)].toUpperCase().split(''))
+    const [word, setword] = useState(['H', 'E', 'L', 'L', 'O'])
     const [row, setrow] = useState(0)
     const [column, setcolumn] = useState(0)
     const [gameWon, setgameWon] = useState(false)
+    const [alerts, setalerts] = useState([])
     const colors = ['red', 'green', 'yellow', 'white']
     const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     const [colorGrid, setcolorGrid] = useState(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill('white')))
@@ -26,7 +29,11 @@ function Game({ numberOfRows, numberOfCells }) {
                 }
             }
             else if (keyword == 'Enter') {
-                if (column == numberOfCells && words.includes(letterGrid[row].join('').toLowerCase())) {
+                if (column == numberOfCells) {
+                    if (!words.includes(letterGrid[row].join('').toLowerCase())) {
+                        setalerts([...alerts, <Alert message="It's not a English word" color="red" />])
+                        return
+                    }
 
                     let cant = {}
 
@@ -81,6 +88,7 @@ function Game({ numberOfRows, numberOfCells }) {
 
                     if (allGreen) {
                         setgameWon(true)
+                        setalerts([...alerts, <Alert message="You won!" color="green" />])
                     }
                 }
             }
@@ -98,6 +106,7 @@ function Game({ numberOfRows, numberOfCells }) {
     useKeypress(handleKeyword)
 
     return <div className="Game">
+        {alerts}
         <Grid numberOfRows={numberOfRows} numberOfCells={numberOfCells} colorGrid={colorGrid} letterGrid={letterGrid} />
         <br />
         <Keyboard onClick={handleKeyword} letterCheck={letterCheck} />
