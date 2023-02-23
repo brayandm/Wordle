@@ -22,21 +22,21 @@ const Keyboard = ({ onClick, letterCheck }) => {
         <div className="keyboard-container">
             <div className="row">
                 {firstRowLetters.map((letter, index) => (
-                    <button key={index} className={"letter-button " + "keyboard-key keyboard-key-" + letterCheck.get(letter.toUpperCase())} onClick={() => handleClick(letter)}>
+                    <button key={index} className={"letter-button keyboard-key keyboard-key-" + letterCheck.get(letter.toUpperCase())} onClick={() => handleClick(letter)}>
                         {letter.toUpperCase()}
                     </button>
                 ))}
             </div>
             <div className="row">
                 {secondRowLetters.map((letter, index) => (
-                    <button key={index} className={"letter-button " + "keyboard-key keyboard-key-" + letterCheck.get(letter.toUpperCase())} onClick={() => handleClick(letter)}>
+                    <button key={index} className={"letter-button keyboard-key keyboard-key-" + letterCheck.get(letter.toUpperCase())} onClick={() => handleClick(letter)}>
                         {letter.toUpperCase()}
                     </button>
                 ))}
             </div>
             <div className="row">
                 {thirdRowLetters.map((letter, index) => (
-                    <button key={index} className={"letter-button " + "keyboard-key keyboard-key-" + letterCheck.get(letter.toUpperCase())} onClick={() => handleClick(letter)}>
+                    <button key={index} className={"letter-button keyboard-key keyboard-key-" + letterCheck.get(letter.toUpperCase())} onClick={() => handleClick(letter)}>
                         {letter.toUpperCase()}
                     </button>
                 ))}
