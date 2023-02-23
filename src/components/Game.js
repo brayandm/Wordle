@@ -12,6 +12,7 @@ function Game({ numberOfRows, numberOfCells }) {
     const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     const [colorGrid, setcolorGrid] = useState(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill('white')))
     const [letterGrid, setletterGrid] = useState(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill(' ')))
+    const [letterCheck, setletterCheck] = useState(new Map(letters.map(key => [key, 'white'])))
 
     function handleKeyword(keyword) {
         if (row != numberOfRows && gameWon == false) {
@@ -90,7 +91,7 @@ function Game({ numberOfRows, numberOfCells }) {
     return <div className="Game">
         <Grid word={word} numberOfRows={numberOfRows} numberOfCells={numberOfCells} colorGrid={colorGrid} letterGrid={letterGrid} />
         <br />
-        <Keyboard onClick={handleKeyword} />
+        <Keyboard onClick={handleKeyword} letterCheck={letterCheck} />
     </div>
 }
 
