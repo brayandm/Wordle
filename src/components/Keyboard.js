@@ -11,11 +11,11 @@ const Keyboard = ({ onClick, letterCheck }) => {
     };
 
     const handleBackspace = () => {
-        onClick('backspace');
+        onClick('Backspace');
     };
 
     const handleEnter = () => {
-        onClick('enter');
+        onClick('Enter');
     };
 
     return (

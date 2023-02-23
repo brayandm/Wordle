@@ -1,7 +1,7 @@
 import Row from './Row'
 import './Grid.css'
 
-function Grid({ word, numberOfRows, numberOfCells, colorGrid, letterGrid }) {
+function Grid({ numberOfRows, numberOfCells, colorGrid, letterGrid }) {
 
     let grid = [];
 

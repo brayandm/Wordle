@@ -10,6 +10,7 @@
     transition: all 0.3s;
     background: linear-gradient(180deg, #ffffff 0%, #e6e6e6 100%);
     border: 1px solid #d9d9d9;
+    margin: 3px;
 }
 
 .cell-white {
