@@ -31,7 +31,7 @@ function Game({ numberOfRows, numberOfCells }) {
             else if (keyword == 'Enter') {
                 if (column == numberOfCells) {
                     if (!words.includes(letterGrid[row].join('').toLowerCase())) {
-                        setalerts([...alerts, <Alert message="It's not a English word" color="red" />])
+                        setalerts([...alerts, <Alert key={alerts.length} message="It's not a English word" color="red" />])
                         return
                     }
 
