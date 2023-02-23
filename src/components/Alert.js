@@ -13,7 +13,7 @@ export default function Alert({ message, color }) {
     }, [])
 
     return visible ? (
-        <div className='alert'>
+        <div className={'alert alert-' + color}>
             <p>{message}</p>
         </div >
     ) : null

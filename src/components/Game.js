@@ -106,10 +106,10 @@ function Game({ numberOfRows, numberOfCells }) {
     useKeypress(handleKeyword)
 
     return <div className="Game">
-        {alerts}
         <Grid numberOfRows={numberOfRows} numberOfCells={numberOfCells} colorGrid={colorGrid} letterGrid={letterGrid} />
         <br />
         <Keyboard onClick={handleKeyword} letterCheck={letterCheck} />
+        {alerts}
     </div>
 }
 
