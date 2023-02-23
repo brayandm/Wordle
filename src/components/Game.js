@@ -41,6 +41,7 @@ function Game({ numberOfRows, numberOfCells }) {
 
                         if (letterGrid[row][i] == word[i]) {
                             colorGrid[row][i] = 'green'
+                            letterCheck.set(letterGrid[row][i], 'green')
                             cant[word[i]] -= 1
                         }
                     }
@@ -49,10 +50,16 @@ function Game({ numberOfRows, numberOfCells }) {
                         if (colorGrid[row][i] != 'green') {
                             if (letterGrid[row][i] in cant && cant[letterGrid[row][i]] > 0) {
                                 colorGrid[row][i] = 'yellow'
+                                if (letterCheck.get(letterGrid[row][i]) != 'green') {
+                                    letterCheck.set(letterGrid[row][i], 'yellow')
+                                }
                                 cant[letterGrid[row][i]] -= 1
                             }
                             else {
                                 colorGrid[row][i] = 'red'
+                                if (letterCheck.get(letterGrid[row][i]) != 'green' && letterCheck.get(letterGrid[row][i]) != 'yellow') {
+                                    letterCheck.set(letterGrid[row][i], 'red')
+                                }
                             }
                         }
                     }
@@ -68,6 +75,7 @@ function Game({ numberOfRows, numberOfCells }) {
                     setcolumn(0)
                     setrow(row + 1)
                     setcolorGrid(colorGrid)
+                    setletterCheck(letterCheck)
 
                     if (allGreen) {
                         setgameWon(true)
@@ -87,7 +95,6 @@ function Game({ numberOfRows, numberOfCells }) {
 
     useKeypress(handleKeyword)
 
-    console.log(letterGrid)
     return <div className="Game">
         <Grid word={word} numberOfRows={numberOfRows} numberOfCells={numberOfCells} colorGrid={colorGrid} letterGrid={letterGrid} />
         <br />
