@@ -55,9 +55,21 @@ function Game({ numberOfRows, numberOfCells }) {
                         }
                     }
 
+                    let allGreen = true
+
+                    for (let i = 0; i < numberOfCells; i++) {
+                        if (colorGrid[row][i] != 'green') {
+                            allGreen = false
+                        }
+                    }
+
                     setcolumn(0)
                     setrow(row + 1)
                     setcolorGrid(colorGrid)
+
+                    if (allGreen) {
+                        alert('You win!')
+                    }
                 }
             }
             else if (letters.includes(keyword.toUpperCase())) {
