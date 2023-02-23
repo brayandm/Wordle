@@ -6,6 +6,7 @@ import useKeypress from './useKeypress';
 function Game({ numberOfRows, numberOfCells }) {
     const [row, setrow] = useState(0)
     const [column, setcolumn] = useState(0)
+    const [gameWon, setgameWon] = useState(false)
     const word = ['H', 'E', 'L', 'L', 'O']
     const colors = ['red', 'green', 'yellow', 'white']
     const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -13,7 +14,7 @@ function Game({ numberOfRows, numberOfCells }) {
     const [letterGrid, setletterGrid] = useState(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill(' ')))
 
     function handleKeyword(keyword) {
-        if (row != numberOfRows) {
+        if (row != numberOfRows && gameWon == false) {
             if (keyword == 'Backspace') {
                 if (column != 0) {
                     letterGrid[row][column - 1] = ' '
@@ -68,7 +69,7 @@ function Game({ numberOfRows, numberOfCells }) {
                     setcolorGrid(colorGrid)
 
                     if (allGreen) {
-                        alert('You win!')
+                        setgameWon(true)
                     }
                 }
             }
