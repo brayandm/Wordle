@@ -1,8 +1,7 @@
 import Cell from './Cell'
 import './Row.css'
 
-function Row() {
-    const numberOfCells = 5;
+function Row({ numberOfCells }) {
 
     let row = [];
 

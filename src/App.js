@@ -5,7 +5,7 @@ import Keyword from './components/Keyword';
 function App() {
   return (
     <div className="App">
-      <Grid />
+      <Grid numberOfRows={6} numberOfCells={5} />
       <br />
       <Keyword />
     </div>

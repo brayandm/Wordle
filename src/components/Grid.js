@@ -1,14 +1,12 @@
 import Row from './Row'
 import './Grid.css'
 
-function Grid() {
-
-    const numberOfRows = 6;
+function Grid({ numberOfRows, numberOfCells }) {
 
     let grid = [];
 
     for (let i = 0; i < numberOfRows; i++) {
-        grid.push(<Row />)
+        grid.push(<Row numberOfCells={numberOfCells} />)
     }
 
     return (
