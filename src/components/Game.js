@@ -2,12 +2,14 @@ import Grid from './Grid'
 import Keyboard from './Keyboard';
 import { useEffect, useState } from 'react';
 import useKeypress from './useKeypress';
+import words from './words'
 
 function Game({ numberOfRows, numberOfCells }) {
+
+    const [word, setword] = useState(words[Math.floor(Math.random() * words.length)].toUpperCase().split(''))
     const [row, setrow] = useState(0)
     const [column, setcolumn] = useState(0)
     const [gameWon, setgameWon] = useState(false)
-    const word = ['H', 'E', 'L', 'L', 'O']
     const colors = ['red', 'green', 'yellow', 'white']
     const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     const [colorGrid, setcolorGrid] = useState(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill('white')))
@@ -24,7 +26,7 @@ function Game({ numberOfRows, numberOfCells }) {
                 }
             }
             else if (keyword == 'Enter') {
-                if (column == numberOfCells) {
+                if (column == numberOfCells && words.includes(letterGrid[row].join('').toLowerCase())) {
 
                     let cant = {}
 
