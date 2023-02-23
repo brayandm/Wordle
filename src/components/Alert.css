@@ -11,13 +11,18 @@
 }
 
 .alert-green {
-    background-color: #d4ffbc;
+    background-color: #e6fff2;
+    background: linear-gradient(180deg, #e6fff2 0%, #ccffe0 100%);
+    border: 1px solid #66ff99;
 }
 
 .alert-red {
-    background-color: #ffb3b3;
+    background-color: #ffe6e6;
+    background: linear-gradient(180deg, #ffe6e6 0%, #ffcccc 100%);
+    border: 1px solid #ff6666;
 }
 
 .alert p {
+    font-size: 20px;
     margin: 0 0 8px;
 }
