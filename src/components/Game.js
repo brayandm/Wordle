@@ -88,7 +88,7 @@ function Game({ numberOfRows, numberOfCells }) {
 
                     if (allGreen) {
                         setgameWon(true)
-                        setalerts([...alerts, <Alert message="You won!" color="green" />])
+                        setalerts([...alerts, <Alert key={alerts.length} message="You won!" color="green" />])
                     }
                 }
             }
