@@ -1,12 +1,12 @@
 import Row from './Row'
 import './Grid.css'
 
-function Grid({ numberOfRows, numberOfCells }) {
+function Grid({ word, numberOfRows, numberOfCells, colorGrid, letterGrid }) {
 
     let grid = [];
 
     for (let i = 0; i < numberOfRows; i++) {
-        grid.push(<Row numberOfCells={numberOfCells} />)
+        grid.push(<Row numberOfCells={numberOfCells} colorRow={colorGrid[i]} letterRow={letterGrid[i]} />)
     }
 
     return (
