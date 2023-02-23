@@ -11,7 +11,7 @@ function Game({ numberOfRows, numberOfCells }) {
     const [word] = useState(['H', 'E', 'L', 'L', 'O'])
     const [row, setrow] = useState(0)
     const [column, setcolumn] = useState(0)
-    const [gameWon, setgameWon] = useState(false)
+    const [gameFinished, setgameFinished] = useState(false)
     const [alerts, setalerts] = useState([])
     const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     const [colorGrid, setcolorGrid] = useState(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill('white')))
@@ -19,84 +19,91 @@ function Game({ numberOfRows, numberOfCells }) {
     const [letterCheck, setletterCheck] = useState(new Map(letters.map(key => [key, 'white'])))
 
     function handleKeyword(keyword) {
-        if (row !== numberOfRows && gameWon === false) {
-            if (keyword === 'Backspace') {
-                if (column !== 0) {
-                    letterGrid[row][column - 1] = ' '
-                    setletterGrid(letterGrid)
-                    setcolumn(column - 1)
+        if (gameFinished === false) {
+            if (row !== numberOfRows) {
+                if (keyword === 'Backspace') {
+                    if (column !== 0) {
+                        letterGrid[row][column - 1] = ' '
+                        setletterGrid(letterGrid)
+                        setcolumn(column - 1)
+                    }
                 }
-            }
-            else if (keyword === 'Enter') {
-                if (column === numberOfCells) {
-                    if (!words.includes(letterGrid[row].join('').toLowerCase())) {
-                        setalerts([...alerts, <Alert key={alerts.length} message="It's not a English word!" color="red" />])
-                        return
-                    }
-
-                    let cant = {}
-
-                    for (let i = 0; i < numberOfCells; i++) {
-                        if (word[i] in cant) {
-                            cant[word[i]] += 1
+                else if (keyword === 'Enter') {
+                    if (column === numberOfCells) {
+                        if (!words.includes(letterGrid[row].join('').toLowerCase())) {
+                            setalerts([...alerts, <Alert key={alerts.length} message="It's not a English word!" color="yellow" />])
+                            return
                         }
-                        else {
-                            cant[word[i]] = 1
-                        }
-                    }
 
-                    for (let i = 0; i < numberOfCells; i++) {
+                        let cant = {}
 
-                        if (letterGrid[row][i] === word[i]) {
-                            colorGrid[row][i] = 'green'
-                            letterCheck.set(letterGrid[row][i], 'green')
-                            cant[word[i]] -= 1
-                        }
-                    }
-
-                    for (let i = 0; i < numberOfCells; i++) {
-                        if (colorGrid[row][i] !== 'green') {
-                            if (letterGrid[row][i] in cant && cant[letterGrid[row][i]] > 0) {
-                                colorGrid[row][i] = 'yellow'
-                                if (letterCheck.get(letterGrid[row][i]) !== 'green') {
-                                    letterCheck.set(letterGrid[row][i], 'yellow')
-                                }
-                                cant[letterGrid[row][i]] -= 1
+                        for (let i = 0; i < numberOfCells; i++) {
+                            if (word[i] in cant) {
+                                cant[word[i]] += 1
                             }
                             else {
-                                colorGrid[row][i] = 'red'
-                                if (letterCheck.get(letterGrid[row][i]) !== 'green' && letterCheck.get(letterGrid[row][i]) !== 'yellow') {
-                                    letterCheck.set(letterGrid[row][i], 'red')
+                                cant[word[i]] = 1
+                            }
+                        }
+
+                        for (let i = 0; i < numberOfCells; i++) {
+
+                            if (letterGrid[row][i] === word[i]) {
+                                colorGrid[row][i] = 'green'
+                                letterCheck.set(letterGrid[row][i], 'green')
+                                cant[word[i]] -= 1
+                            }
+                        }
+
+                        for (let i = 0; i < numberOfCells; i++) {
+                            if (colorGrid[row][i] !== 'green') {
+                                if (letterGrid[row][i] in cant && cant[letterGrid[row][i]] > 0) {
+                                    colorGrid[row][i] = 'yellow'
+                                    if (letterCheck.get(letterGrid[row][i]) !== 'green') {
+                                        letterCheck.set(letterGrid[row][i], 'yellow')
+                                    }
+                                    cant[letterGrid[row][i]] -= 1
+                                }
+                                else {
+                                    colorGrid[row][i] = 'red'
+                                    if (letterCheck.get(letterGrid[row][i]) !== 'green' && letterCheck.get(letterGrid[row][i]) !== 'yellow') {
+                                        letterCheck.set(letterGrid[row][i], 'red')
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    let allGreen = true
+                        let allGreen = true
 
-                    for (let i = 0; i < numberOfCells; i++) {
-                        if (colorGrid[row][i] !== 'green') {
-                            allGreen = false
+                        for (let i = 0; i < numberOfCells; i++) {
+                            if (colorGrid[row][i] !== 'green') {
+                                allGreen = false
+                            }
                         }
-                    }
 
-                    setcolumn(0)
-                    setrow(row + 1)
-                    setcolorGrid(colorGrid)
-                    setletterCheck(letterCheck)
+                        if (allGreen) {
+                            setgameFinished(true)
+                            setalerts([...alerts, <Alert key={alerts.length} message="You won!" color="green" />])
+                        }
 
-                    if (allGreen) {
-                        setgameWon(true)
-                        setalerts([...alerts, <Alert key={alerts.length} message="You won!" color="green" />])
+                        if (row === numberOfRows - 1) {
+                            setgameFinished(true)
+                            setalerts([...alerts, <Alert key={alerts.length} message="You lost!" color="red" />])
+                        }
+
+                        setcolumn(0)
+                        setrow(row + 1)
+                        setcolorGrid(colorGrid)
+                        setletterCheck(letterCheck)
                     }
                 }
-            }
-            else if (letters.includes(keyword.toUpperCase())) {
-                if (column !== numberOfCells) {
-                    keyword = keyword.toUpperCase();
-                    letterGrid[row][column] = keyword
-                    setletterGrid(letterGrid)
-                    setcolumn(column + 1)
+                else if (letters.includes(keyword.toUpperCase())) {
+                    if (column !== numberOfCells) {
+                        keyword = keyword.toUpperCase();
+                        letterGrid[row][column] = keyword
+                        setletterGrid(letterGrid)
+                        setcolumn(column + 1)
+                    }
                 }
             }
         }

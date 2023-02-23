@@ -16,6 +16,12 @@
     border: 1px solid #66ff99;
 }
 
+.alert-yellow {
+    background-color: #fff7e6;
+    background: linear-gradient(180deg, #fff7e6 0%, #ffe8cc 100%);
+    border: 1px solid #ffcc66;
+}
+
 .alert-red {
     background-color: #ffe6e6;
     background: linear-gradient(180deg, #ffe6e6 0%, #ffcccc 100%);
