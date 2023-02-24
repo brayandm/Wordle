@@ -1,4 +1,4 @@
-.help {
+.help-buttom {
     position: fixed;
     top: 5%;
     right: -1%;
@@ -9,7 +9,7 @@
     font-size: 65px;
 }
 
-.help:hover {
+.help-buttom:hover {
     transition: all 0.3s;
     color: #0b7dda;
 }

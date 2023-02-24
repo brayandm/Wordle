@@ -1,0 +1,33 @@
+/*create keyframe fadin and translatin bottom up*/
+@keyframes fadin {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.help {
+    position: fixed;
+    top: 12%;
+    left: 37%;
+    width: 400px;
+    height: 550px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    background: linear-gradient(180deg, #ffffff 0%, #e6e6e6 100%);
+    border: 1px solid #d9d9d9;
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    animation: fadin 0.5s;
+}

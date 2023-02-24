@@ -8,6 +8,7 @@ import PlayAgainButton from './PlayAgainButton'
 import Row from './Row';
 import "./Game.css"
 import HelpButton from './HelpButton';
+import Help from './Help';
 
 function Game({ numberOfRows, numberOfCells }) {
 
@@ -24,6 +25,7 @@ function Game({ numberOfRows, numberOfCells }) {
     const [colorAnswer, setcolorAnswer] = useState(Array(numberOfCells).fill('white'))
     const [letterAnswer, setletterAnswer] = useState(Array(numberOfCells).fill(' '))
     const [playedWords, setplayedWords] = useState([])
+    const [showhelp, setshowhelp] = useState(false)
 
     function handleKeyword(keyword) {
         if (gameFinished === false) {
@@ -146,9 +148,14 @@ function Game({ numberOfRows, numberOfCells }) {
         setletterAnswer(Array(numberOfCells).fill(' '))
     }
 
+    function handleHelp() {
+        setshowhelp(!showhelp)
+    }
+
     return <div className="Game">
+        {showhelp ? <Help /> : null}
         {gameFinished ? <PlayAgainButton onClick={handleStartGame} /> : null}
-        <HelpButton />
+        <HelpButton onClick={handleHelp} />
         <div className='answer'>
             <Row numberOfCells={numberOfCells} colorRow={colorAnswer} letterRow={letterAnswer} />
         </div>
