@@ -7,6 +7,7 @@ import Alert from './Alert'
 import PlayAgainButton from './PlayAgainButton'
 import Row from './Row';
 import "./Game.css"
+import HelpButton from './HelpButton';
 
 function Game({ numberOfRows, numberOfCells }) {
 
@@ -147,6 +148,7 @@ function Game({ numberOfRows, numberOfCells }) {
 
     return <div className="Game">
         {gameFinished ? <PlayAgainButton onClick={handleStartGame} /> : null}
+        <HelpButton />
         <div className='answer'>
             <Row numberOfCells={numberOfCells} colorRow={colorAnswer} letterRow={letterAnswer} />
         </div>

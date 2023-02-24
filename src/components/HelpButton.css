@@ -1,0 +1,15 @@
+.help {
+    position: fixed;
+    top: 5%;
+    right: -1%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    align-self: center;
+    cursor: pointer;
+    font-size: 65px;
+}
+
+.help:hover {
+    transition: all 0.3s;
+    color: #0b7dda;
+}
