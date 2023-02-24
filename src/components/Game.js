@@ -4,11 +4,12 @@ import { useState } from 'react';
 import useKeypress from './useKeypress';
 import words from './words'
 import Alert from './Alert'
+import PlayAgainButton from './PlayAgainButton'
 
 function Game({ numberOfRows, numberOfCells }) {
 
-    // const [word] = useState(words[Math.floor(Math.random() * words.length)].toUpperCase().split(''))
-    const [word] = useState(['H', 'E', 'L', 'L', 'O'])
+    // const [word, setword] = useState(words[Math.floor(Math.random() * words.length)].toUpperCase().split(''))
+    const [word, setword] = useState(['H', 'E', 'L', 'L', 'O'])
     const [row, setrow] = useState(0)
     const [column, setcolumn] = useState(0)
     const [gameFinished, setgameFinished] = useState(false)
@@ -111,7 +112,19 @@ function Game({ numberOfRows, numberOfCells }) {
 
     useKeypress(handleKeyword)
 
+    function handleStartGame() {
+        setword(words[Math.floor(Math.random() * words.length)].toUpperCase().split(''))
+        setrow(0)
+        setcolumn(0)
+        setgameFinished(false)
+        setalerts([])
+        setcolorGrid(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill('white')))
+        setletterGrid(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill(' ')))
+        setletterCheck(new Map(letters.map(key => [key, 'white'])))
+    }
+
     return <div className="Game">
+        {gameFinished ? <PlayAgainButton onClick={handleStartGame} /> : null}
         <Grid numberOfRows={numberOfRows} numberOfCells={numberOfCells} colorGrid={colorGrid} letterGrid={letterGrid} />
         <br />
         <Keyboard onClick={handleKeyword} letterCheck={letterCheck} />
