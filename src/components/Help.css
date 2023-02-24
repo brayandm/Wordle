@@ -30,6 +30,7 @@
     align-items: center;
     z-index: 1;
     font-family: Arial, sans-serif;
+    font-size: 16px;
     animation: fadin 0.5s;
 }
 
