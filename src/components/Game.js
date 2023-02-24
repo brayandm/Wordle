@@ -5,6 +5,8 @@ import useKeypress from './useKeypress';
 import words from './words'
 import Alert from './Alert'
 import PlayAgainButton from './PlayAgainButton'
+import Row from './Row';
+import "./Game.css"
 
 function Game({ numberOfRows, numberOfCells }) {
 
@@ -18,6 +20,8 @@ function Game({ numberOfRows, numberOfCells }) {
     const [colorGrid, setcolorGrid] = useState(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill('white')))
     const [letterGrid, setletterGrid] = useState(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill(' ')))
     const [letterCheck, setletterCheck] = useState(new Map(letters.map(key => [key, 'white'])))
+    const [colorAnswer, setcolorAnswer] = useState(Array(numberOfCells).fill('white'))
+    const [letterAnswer, setletterAnswer] = useState(Array(numberOfCells).fill(' '))
 
     function handleKeyword(keyword) {
         if (gameFinished === false) {
@@ -51,6 +55,8 @@ function Game({ numberOfRows, numberOfCells }) {
 
                             if (letterGrid[row][i] === word[i]) {
                                 colorGrid[row][i] = 'green'
+                                colorAnswer[i] = 'green'
+                                letterAnswer[i] = word[i]
                                 letterCheck.set(letterGrid[row][i], 'green')
                                 cant[word[i]] -= 1
                             }
@@ -88,6 +94,12 @@ function Game({ numberOfRows, numberOfCells }) {
                         }
 
                         if (row === numberOfRows - 1) {
+                            for (let i = 0; i < numberOfCells; i++) {
+                                if (colorAnswer[i] !== 'green') {
+                                    colorAnswer[i] = 'red'
+                                    letterAnswer[i] = word[i]
+                                }
+                            }
                             setgameFinished(true)
                             setalerts([...alerts, <Alert key={alerts.length} message="You lost!" color="red" />])
                         }
@@ -121,10 +133,15 @@ function Game({ numberOfRows, numberOfCells }) {
         setcolorGrid(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill('white')))
         setletterGrid(Array.from({ length: numberOfRows }, () => Array(numberOfCells).fill(' ')))
         setletterCheck(new Map(letters.map(key => [key, 'white'])))
+        setcolorAnswer(Array(numberOfCells).fill('white'))
+        setletterAnswer(Array(numberOfCells).fill(' '))
     }
 
     return <div className="Game">
         {gameFinished ? <PlayAgainButton onClick={handleStartGame} /> : null}
+        <div className='answer'>
+            <Row numberOfCells={numberOfCells} colorRow={colorAnswer} letterRow={letterAnswer} />
+        </div>
         <Grid numberOfRows={numberOfRows} numberOfCells={numberOfCells} colorGrid={colorGrid} letterGrid={letterGrid} />
         <br />
         <Keyboard onClick={handleKeyword} letterCheck={letterCheck} />
