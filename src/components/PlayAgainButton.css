@@ -10,13 +10,13 @@
 
 .play-again {
 	position: fixed;
-	top: 8%;
-	left: 70%;
+	top: 5%;
+	right: -1%;
 	transform: translate(-50%, -50%);
 	font-size: 30px;
 	align-self: center;
 	cursor: pointer;
-	font-size: 80px;
+	font-size: 65px;
 	animation: fadein 1s;
 }
 
