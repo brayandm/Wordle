@@ -3,9 +3,7 @@ import './PlayAgainButton.css';
 
 function PlayAgainButton(props) {
   return (
-    <button className="start-game-button" onClick={props.onClick}>
-      Play Again
-    </button>
+    <i onClick={props.onClick} class="play-again icon-play-sign"></i>
   );
 }
 
