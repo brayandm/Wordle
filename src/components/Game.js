@@ -22,6 +22,7 @@ function Game({ numberOfRows, numberOfCells }) {
     const [letterCheck, setletterCheck] = useState(new Map(letters.map(key => [key, 'white'])))
     const [colorAnswer, setcolorAnswer] = useState(Array(numberOfCells).fill('white'))
     const [letterAnswer, setletterAnswer] = useState(Array(numberOfCells).fill(' '))
+    const [playedWords, setplayedWords] = useState([])
 
     function handleKeyword(keyword) {
         if (gameFinished === false) {
@@ -39,6 +40,13 @@ function Game({ numberOfRows, numberOfCells }) {
                             setalerts([...alerts, <Alert key={alerts.length} message="It's not a English word!" color="yellow" />])
                             return
                         }
+
+                        if (playedWords.includes(letterGrid[row].join('').toLowerCase())) {
+                            setalerts([...alerts, <Alert key={alerts.length} message="You already played this word!" color="yellow" />])
+                            return
+                        }
+
+                        setplayedWords([...playedWords, letterGrid[row].join('').toLowerCase()])
 
                         let cant = {}
 
