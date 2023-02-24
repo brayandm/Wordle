@@ -7,7 +7,7 @@ export default function Alert({ message, color }) {
     useEffect(() => {
         const timer = setTimeout(() => {
             setVisible(false);
-        }, 1000);
+        }, 2000);
 
         return () => clearTimeout(timer);
     }, [])

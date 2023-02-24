@@ -1,3 +1,21 @@
+@keyframes fadeinout {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 .alert {
     position: fixed;
     top: 10%;
@@ -8,6 +26,7 @@
     padding: 16px;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: fadeinout 2s;
 }
 
 .alert-green {
