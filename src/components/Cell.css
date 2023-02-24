@@ -34,7 +34,7 @@
 .cell-red {
     background-color: #ffe6e6;
     background: linear-gradient(180deg, #ffe6e6 0%, #ffcccc 100%);
-    border: 1px solid #ff6666;
+    border: 1px solid #ff8d8d;
 }
 
 .cell p {
