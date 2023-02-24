@@ -6,8 +6,43 @@
     background-color: #f2f2f2;
 }
 
+@keyframes coloring {
+    0% {
+        color: #ff0000;
+    }
+
+    14% {
+        color: #ff7f00;
+    }
+
+    28% {
+        color: #ffff00;
+    }
+
+    42% {
+        color: #00ff00;
+    }
+
+    56% {
+        color: #00ffff;
+    }
+
+    70% {
+        color: #0000ff;
+    }
+
+    84% {
+        color: #9400d3;
+    }
+
+    100% {
+        color: #ff0000;
+    }
+}
+
 .title {
-    font-size: 36px;
+    font-size: 50px;
     font-weight: bold;
     color: #333333;
+    animation: coloring infinite 15s;
 }
