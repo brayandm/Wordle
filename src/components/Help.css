@@ -29,6 +29,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
+    font-family: Arial, sans-serif;
     animation: fadin 0.5s;
 }
 
@@ -40,4 +41,49 @@
     align-self: center;
     cursor: pointer;
     font-size: 30px;
+}
+
+.help-exit-buttom:hover {
+    transition: all 0.3s;
+    color: #0b7dda;
+}
+
+.help .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+    width: 380px;
+}
+
+.help h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.help ul {
+    list-style: disc;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.help li {
+    margin-bottom: 10px;
+}
+
+.help .green {
+    color: green;
+    font-weight: bold;
+}
+
+.help .yellow {
+    /*dark yellow cthat ontrast with white and you can see it correcty*/
+    color: #ffcc66;
+    font-weight: bold;
+}
+
+.help .red {
+    color: red;
+    font-weight: bold;
 }
