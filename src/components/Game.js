@@ -151,9 +151,12 @@ function Game({ numberOfRows, numberOfCells }) {
     function handleHelp() {
         setshowhelp(!showhelp)
     }
+    function handleHelpExit() {
+        setshowhelp(false)
+    }
 
     return <div className="Game">
-        {showhelp ? <Help /> : null}
+        {showhelp ? <Help onClick={handleHelpExit} /> : null}
         {gameFinished ? <PlayAgainButton onClick={handleStartGame} /> : null}
         <HelpButton onClick={handleHelp} />
         <div className='answer'>
