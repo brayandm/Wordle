@@ -28,6 +28,19 @@ function Game({ numberOfRows, numberOfCells }) {
     const [showhelp, setshowhelp] = useState(false)
 
     function handleKeyword(keyword) {
+
+        if (keyword === 'Escape') {
+            setshowhelp(false)
+            return
+        }
+
+        if (keyword === 'Enter') {
+            if (gameFinished) {
+                handleStartGame();
+                return
+            }
+        }
+
         if (gameFinished === false) {
             if (row !== numberOfRows) {
                 if (keyword === 'Backspace') {
