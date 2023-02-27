@@ -44,5 +44,5 @@
     font-size: 50px;
     font-weight: bold;
     color: #333333;
-    animation: coloring infinite 15s;
+    animation: coloring infinite 15s linear;
 }
