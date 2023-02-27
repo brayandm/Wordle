@@ -146,6 +146,7 @@ function Game({ numberOfRows, numberOfCells }) {
         setletterCheck(new Map(letters.map(key => [key, 'white'])))
         setcolorAnswer(Array(numberOfCells).fill('white'))
         setletterAnswer(Array(numberOfCells).fill(' '))
+        setplayedWords([])
     }
 
     function handleHelp() {
