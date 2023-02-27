@@ -29,16 +29,14 @@ function Game({ numberOfRows, numberOfCells }) {
 
     function handleKeyword(keyword) {
 
-        if (keyword === 'Escape') {
+        if (keyword === 'Escape' && showhelp) {
             setshowhelp(false)
             return
         }
 
-        if (keyword === 'Enter') {
-            if (gameFinished) {
-                handleStartGame();
-                return
-            }
+        if (keyword === 'Enter' && gameFinished) {
+            handleStartGame();
+            return
         }
 
         if (gameFinished === false) {
